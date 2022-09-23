@@ -1,0 +1,37 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+    <title>Наша команда</title>
+{% endblock header %}
+
+{% block content %}
+   {% block page_header%}
+      <h1 style="padding-top: 1%;text-align: center;">Наша команда</h1>
+   {% endblock page_header%} 
+
+  {% csrf_token %}
+
+  <ul enctype="multipart/form-data" style="list-style-type:none;" enctype="multipart/form-data">
+   {% for i in drivers %} <!--why posts -> because see in views on function-->
+      <table style="width: 100%;">
+         <td style="width:30%;padding-left: 5%;">
+            {% if i.photo_person %}
+            <p><img src="{{ i.photo_person.url }}" alt="foto_drivers" style="height:220px;width:300px;border:3px;float:left"></p>
+            {% endif %}
+         </td>
+
+         <td style="width:70%;padding-left: 5%;padding-right: 5%;">
+         <h3>{{i.first_name }}</h3> <!--driver.last_name how?-->       
+         <p>Автомобиль: {{i.cars}}</p>
+         <p>Образование: {{i.education}}</p>
+         <p>Знание языков: {{i.language_person}}</p>
+         <p>Стаж вождения : c {{i.driving_experience|date:'Y'}}г.</p> <!--стаж вождения-->
+         <p>Несколько слов о водителе: {{ i.content }}</p>
+         </td>
+      </table>
+      <hr>
+   {% endfor %}
+   </ul>
+
+
+{% endblock content %}

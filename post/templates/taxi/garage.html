@@ -1,0 +1,48 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+    <title>Автопарк</title>
+{% endblock header %}
+
+{% block content %}
+    {% block page_header%}
+        <h1 style="padding-top: 1%;text-align: center;">Наш автопарк</h1>
+    {% endblock page_header%} 
+
+    <ul style="list-style-type:none;" enctype="multipart/form-data">
+        {% for i in posts %}
+        <table style="width: 100%;">
+            <td style="width:30%;padding-left: 5%;">
+                {% if i.photo %}
+                    <p><img src="{{ i.photo.url }}" alt="foto_cars" style="height:200px;width:300px;border:3px;float:left"></p>
+                {% endif %}
+            </td>
+            <td style="width:70%;padding-left: 5%;padding-right: 5%;">
+                <h3 >{{i.title}}</h3>
+                <p>Год производства автомобиля: {{ i.year_avto|date:'Y'}}</p>
+                <p>Пробег автомобиля: {{ i.distance}}</p>
+                <p >Описание автомобиля: {{i.content}}</p>
+            </td>
+        </table>
+        <hr>
+    {% endfor %}    
+    </ul>
+    {% if page_obj.has_other_pages %} <!--нумерация перелистывания сработает если больше 5ти постов на странице, заданы вo view-->
+    <nav align='center' class="#">
+        <ul>    
+            {% if page_obj.has_previos%}
+            <li>
+                <a href='?page={{ page_obj.previos_page_number }}'> &lt; </a> <!--стрелочка для перелистывания пагинации/постраничной навигации-->
+            </li>
+            {% endif %}
+            {% for p in paginator.page_range %}
+            <li>
+                <a href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
+
+
+{% endblock content %}

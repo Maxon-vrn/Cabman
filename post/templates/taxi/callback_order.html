@@ -1,0 +1,20 @@
+{% extends 'taxi/base.html' %}
+
+
+{% block content %}
+<!--<meta http-equiv="refresh" content="3; URL='index.html'" >-->
+<!--при перенаправлении он склеивает адрес callback_order/index.html - ошибка-->
+<!--перенаправление на главную страницу после информации о принятии заказа-->
+    
+<div method="POST" align="center" style="padding-top: 100px;">
+        {% csrf_token %}
+        <h1>{{ name }} <- Имя, Ваша заявка передана оператору!</h1>
+        <h1>Оператор свяжется с Вами в ближайшее время!</h1>
+        <h1>Спасибо что выбрали нас!!!</h1>
+        <br>
+        <p>Перенаправляю на главную страницу через 3...2...1...</p>
+    </div>
+
+    
+
+{% endblock content %}

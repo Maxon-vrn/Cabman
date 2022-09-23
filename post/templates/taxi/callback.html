@@ -1,0 +1,43 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+    <title>Обратная связь</title>
+{% endblock header %}
+
+{% block content %}
+   
+{% block page_header %}
+<div style="text-align: center;padding-top: 1%;">
+    <h1>Возникли вопросы или есть предложения?</h1>
+    <h2>Оставьте заявку и мы свами свяжемся в ближайшее время.</h2>
+</div>
+{% endblock page_header %}
+
+<!--    <div align="center" style="padding-top: 3%;"> 
+        
+        <form method="POST"> 
+            {% csrf_token %}
+            {{ form.media }} 
+            {{ form.as_p}}
+        <input type="submit" name="Отправить" id="submit">
+        </form>
+    </div>-->
+
+    <div align="center" style="padding-top: 3%;">
+        <form method="POST"> 
+            {% csrf_token %}
+            {% for value in form %}
+            <table style="width:100%">
+                <tr>
+                    <td style="width:38%;"></td>
+                    <td style="width:10%;"><label style="padding-right: 1%;" for ='{{ f.id_for_label}}'>{{ value.label }}</label></td>
+                    <td style="width:10%;"><p >{{ value }}</p></td>
+                    <td style="width:38%;"><div>{{ value.errors}}</div></td>
+                </tr>
+                </table>    
+            {% endfor %}
+            <input style="margin-top: 1%;" class="button_forms" type="submit" name="Отправить" id="submit" >
+           
+    </div>
+
+{% endblock content %}

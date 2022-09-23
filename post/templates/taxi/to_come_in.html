@@ -1,0 +1,37 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+    <title>Вход на сайт</title>
+{% endblock header %}
+
+{% block content %}
+
+<div align="center" style="padding-top: 100px;">
+    <form method="POST" action="{% url 'to_come_in' %}" name="to_come_in"> <!--action если форма не сработала или чтото пошло не так-->
+        <!--action="{% url 'to_come_in' %}" перенаправление в случае удачного/неудачного? входа-->
+        {% csrf_token %}
+        <table style="width:100%;">
+            <tr>
+                <td style="width:38%;"></td>
+                <td style="width:10%;text-align: center"><label>{{ form.username.label}}: </label></td>
+                <td style="width:10%;"><p>{{ form.username}}</p></td>
+                <td style="width:38%;"><div>{{ form.username.errors }}</div></td>
+            </tr>
+            <tr>
+                <td style="width:38%;"></td>
+                <td style="width:10%;text-align: center;"><label>{{ form.password.label}}: </label></td>
+                <td style="width:10%;"><p>{{ form.password}}</p></td>
+                <td style="width:38%;"><div>{{ form.password.errors }}</div></td>
+            </tr>
+        <div align="center">{{ form.non_field_errors }}</div><!--отображение ошибок не связанных с полями-->
+        </table>
+        <button class="button_forms" style="margin-top: 1%;" type="submit">войти</button>
+    </form>
+    <form method="" action="{% url 'registration' %}" name="registration"  >
+        <button class="button_forms" style="margin-top: 1%;" type="submit">зарегистрироваться</button>
+    </form>
+    
+</div>
+ 
+
+{% endblock content %}

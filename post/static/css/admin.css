@@ -1,0 +1,11 @@
+#header {
+    background-color: rgb(253, 217, 155);
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: black;
+}
+#user-tools,#header a:visited,#header a:link{
+    color: black;
+}
+

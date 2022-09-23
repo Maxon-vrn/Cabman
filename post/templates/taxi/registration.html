@@ -1,0 +1,30 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+    <title>Регистрация</title>
+{% endblock header %}
+
+{% block content %}
+
+<div align="center" style="padding-top: 100px;">
+    <form method="POST"  >
+        {% csrf_token %}
+        <table style="width:100%;">
+            {% for f in form %}
+            <tr>
+                <td style="width:38%;"></td>
+                <td style="width:10%;text-align: center;"><label for ='{{ f.id_for_label}}'>{{ f.label }}</label></td>
+                <td style="width:10%;"><p>{{ f }}</p></td>
+                <td style="width:38%;"></td>
+            </tr>
+            <div>{{ f.errors }}</div>
+            {% endfor %}
+        </table>
+        <button class="button_forms" style="margin-top: 1%;" type="submit">зарегистрироваться</button>
+   
+    </form>
+
+</div>
+ 
+
+{% endblock content %}

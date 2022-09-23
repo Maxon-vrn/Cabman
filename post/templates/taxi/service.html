@@ -1,0 +1,45 @@
+{% extends 'taxi/base.html' %}
+
+
+{% block header %}
+<title>Наши услуги</title>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=5c53fe2b-20aa-4490-ad30-b764787d26b3" type="text/javascript"></script>
+
+<style>
+    html, body, #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+{% endblock header%}
+
+{% block content %} 
+
+
+    <p>здесь нужно описать все наши услуги и возможности</p>
+    <p>описать основные направления и цены(москва-воронеж, встреча из аэропорта, аренда машины на день)</p>
+
+
+    <table style="width:100%;border: none;">
+        <td style="width:40%;padding-left: 3%;padding-bottom: 15%;">  
+                <h2 align="center">Приблизительный расчет поездки по городу:</h2>
+                    <p>Укажите точку "А": куда необходимо подать автомобиль.</p>
+                    <p>Укажите точку "В": куда планируется маршрут на автомобиле.</p>
+                    <p>Минимальная стоимость поездки в пределах города 400 руб</p>
+                    <p>За пределами города цена на поездки может варьироваться в зависимости от выбранного маршрута и наличия платных участков дороги.</p>
+                    <p>Для оформления заказа Вам неодходимо <a href="{% url 'to_come_in' %}">авторизоваться</a>.</p>
+                
+            
+        </td>
+        <td style="width:60%;">
+            <div id="map" style="width: 800px; height: 450px;padding-right: 3%;"></div>
+        </td>
+    </table>
+   
+    
+
+      
+
+{% endblock content %}

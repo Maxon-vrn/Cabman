@@ -1,0 +1,55 @@
+{% extends 'taxi/base.html' %}
+
+{% block header %}
+<title>Контакты</title>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=5c53fe2b-20aa-4490-ad30-b764787d26b3" type="text/javascript"></script>
+
+<script type="text/javascript">
+  ymaps.ready(function () {  
+    var map = new ymaps.Map("map1", {
+      center: [51.66114505, 39.20129184], 
+      zoom: 12,
+      behaviors: ['drag'],
+      controls: ['default', 'routeButtonControl']
+    });
+
+    if (map) {
+      ymaps.modules.require(['Placemark', 'Circle'], function (Placemark, Circle) {
+        var placemark = new Placemark([55.37, 35.45]);
+      });
+    }
+  });
+</script>
+{% endblock header%}
+
+
+{% block content %}
+
+      
+<table   style="width:100%;">     
+  <td id="c5" style="width:40%;padding-left: 8%;padding-top: 5%;padding-bottom: 15%;">
+      <h2 style="padding-left: 10%;">Контакты:</h2>
+        <ul>
+          <li>ООО 'Извозчик' ОГРН КПП и другая юр инфо</li>
+          <li>Воронеж, ул.Г.Сибиряков 11</li>
+          <li>тел:8-960-101-90-39</li>
+          <li>Fisenko_maxim@mail.ru</li>
+          <lo>
+            <a href="https://vk.com/fisenko_maxim/" target="_blank"><img src="https://maxon-vrn.github.io/appartment_vrn/static/img/vk.png" alt='VK' style="width:42px;height:42px;"></a>
+            <a href="https://t.me/Fisenko_Maxim/" target="_blank"><img 
+              src="https://maxon-vrn.github.io/appartment_vrn/static/img/telegram.png" style="width:42px;height:42px;"></a>
+              <!--<a href="https:///" target="_blank"><img 
+                src="https://maxon-vrn.github.io/appartment_vrn/static/img/youtube.png" style="width:42px;height:42px;
+              "></a>-->
+          </lo>
+        </ul>
+  </td>
+          <!--Maps-->
+          <td style="width:60%;">
+            <div id="map1" style="width: 800px; height: 450px;padding-right: 3%;"></div>
+        </td>
+
+  </tr>          
+</table>
+       
+{% endblock content %}

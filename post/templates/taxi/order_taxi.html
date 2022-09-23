@@ -1,0 +1,54 @@
+{% extends 'taxi/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block header %}
+    <title>Оформление заказа</title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=5c53fe2b-20aa-4490-ad30-b764787d26b3" type="text/javascript"></script>
+
+<style>
+    html, body, #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+{% endblock header %}
+
+{% block content %}
+
+<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script><!--подключаает сам файл-->
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/><!--отвечает за сам виджет часов или календаря-->
+<!--<link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >-->
+<!--<script type="text/javascript" src="{% static '/js/jquery.js' %}"></script>--> <!--error don't find this file to adress-->
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+
+
+<table style="width:100%;padding-top: 3%;">
+    <td style="width:45%;padding-left: 8%">
+        <form method="POST"  action="{% url 'order_taxi' %}" >
+            {% csrf_token %}
+            {{ form.media }}
+            <table style="width:100%;">
+                {% for value in form %}
+                <tr>
+                    <td style="width:30%"><label style="padding-right: 1%;" for ='{{ f.id_for_label}}'>{{ value.label }}</label></td>
+                    <td style="width:40%;"><p >{{ value }}</p></td>
+                    <div>{{ value.errors}}</div>
+                </tr>
+            {% endfor %}                
+            </table> 
+            <input class="button_forms" align="center" type="submit" name="Отправить" id="submit">
+        </form>
+    </td>
+    <td style="width:55%">
+        <div id="map" style="width: 700px; height: 700px;padding-right: 5%;"></div>
+    </td>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% load static %} 
+{% load yandex_metrica %}
+<!--подключения внешних статических файлов к шаблону; нужно добавить логику на смену шапки при вхождении в личный кабинет-->
+
+<!doctype html>
+<html lang="ru">
+<head>
+    
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--mobile-->
+        <!--фавикон в меню-->
+        <link rel="icon" type="image/x-icon" href="https://maxon-vrn.github.io/appartment_vrn/static/img/favicon.ico">
+
+        <!--путь указываем относительно папки static для подключения стилей css-->
+        <link type = 'text/css'rel="stylesheet" href="{% static 'taxi/css/style.css' %}"/> 
+
+        {% block header %} <!--возможность присутствия и подключения блока в хеадер на любой странице-->
+
+        {% endblock header%}
+
+        <script src="{% static 'taxi/js/script.js' %}"></script>
+   
+    
+
+        <!--определите ключевые слова для поисковых систем  SEO-->
+        <meta name="keywords" content="Воронеж,Такси Воронеж,Водитель Воронеж, Аренда автомобиля на день,Аренда водителя,Водитель на день"> 
+        <meta http-equiv="Refresh" content="50" /> <!--auto refresh-->
+    {% yandex_metrica %}  
+  
+
+</head>
+
+
+<body>  
+    
+    
+
+        <div>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">Cabman</a>
+
+             <div class="navbar-wrap">
+                <ul class="navbar-menu">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="{% url 'garage' %}">Автомобили</a></li>
+                    <li><a href="{% url 'service' %}">Наши услуги</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    <!--<li><a href="{% url 'to_come_in' %}">Вход </a>|<a href="{% url 'registration' %}"> Регистрация</a></li>-->
+                    {% if request.user.is_authenticated %} <!--admin max it's work, user don't work-->
+                        <li>Привет, {{ user.username }} |<a href="{% url 'logout' %}">Выйти</a></li>
+                        <!-- href="{% url 'logout' %}" самостоятельная страница-->
+                        <!-- href="logout" страница через слеш от предыдущей страницы на сайте-->
+                    {% else %}
+                        <li><a href="{% url 'to_come_in' %}">Вход </a>|<a href="{% url 'registration' %}"> Регистрация</a></li>
+                    {% endif %}
+                </ul>
+                {% if request.user.is_authenticated %}
+                    <button type="button" onclick='location.href="/order_taxi/"' class="callback" >заказать авто</button> 
+                {% endif %}    
+                <button style="margin-right: 10px"; type="button"  onclick='location.href="/callback/"' class="callback">обратный звонок</button> 
+            </div>
+        </div>
+    </nav>
+        </div>    
+
+        {% block content %}
+
+        {% endblock content %}
+
+
+<!--в футере прописать ссылки меню и соц сети(телеграм для быстрого заказа и номер телефона)-->
+<!--информация об авторстве и сотрудничестве-->
+        {% block footer %}
+
+        {% endblock footer %}
+
+        <!--bootstrap js,jquery,popper and other information on dockumentation-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
