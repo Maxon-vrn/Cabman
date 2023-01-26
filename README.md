@@ -23,6 +23,4 @@ Yandex Api  - помогает решить вопрос расчета стои
 
 ![Иллюстрация приложения](https://github.com/Maxon-vrn/Cabman/blob/master/data/online_chek.jpg)
 
-![Иллюстрация приложения](https://github.com/Maxon-vrn/Cabman/blob/master/data/garaj.jpg)
-
 ![Иллюстрация приложения](https://github.com/Maxon-vrn/Cabman/blob/master/data/registrate.jpg)
