@@ -154,8 +154,8 @@ CACHES = {
 }
 
 #This bloc is settings to capcha on page cabman
-CAPTCHA_IMAGE_SIZE=[150,60]
-CAPTCHA_FONT_SIZE=30
+#CAPTCHA_IMAGE_SIZE=[150,60]
+#CAPTCHA_FONT_SIZE=30
 
 # metrica - django-analitica - dockumentation on settings
 YANDEX_METRICA_COUNTER_ID = '12345678'
